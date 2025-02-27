@@ -1,0 +1,14 @@
+# temporary dont use pv - use storage class
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: odoo-pv
+spec:
+  capacity:
+    storage: 10Gi # must be the same as gcp standard disk peristent 
+  accessModes:
+    - ReadWriteOnce #only one node can mount it 
+  persistentVolumeReclaimPolicy: Retain 
+  gcePersistentDisk:
+    pdName: odoo-gcp-storage  # matches with gcp persistent standard disk 
+    fsType: ext4  
